@@ -10,6 +10,10 @@
 		
 		<!-- 절대경로 -->
 		<a href="/ch05/user1/list.jsp">User1 목록</a>
+		<a href="/ch05/user2/list.jsp">User2 목록</a>
+		<a href="/ch05/user3/list.jsp">User3 목록</a>
+		<a href="/ch05/user4/list.jsp">User4 목록</a>
+		<a href="/ch05/user5/list.jsp">User5 목록</a>
 	
 	</body>
 </html>
