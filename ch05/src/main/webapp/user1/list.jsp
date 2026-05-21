@@ -19,7 +19,7 @@
 	String pass = "1234";
 	
 	try {
-		// 1) 드라이버 로드(생략)
+		// 1) 드라이버 로드
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		// 2) 데이터베이스 접속
@@ -82,7 +82,7 @@
 					<td><%= user1.getHp() %></td>
 					<td><%= user1.getAge() %></td>
 					<td>
-						<a href="#">수정</a>
+						<a href="/ch05/user1/modify.jsp?userid=<%= user1.getUserid() %>">수정</a>
 						<a href="#">삭제</a>
 					</td>
 				</tr>
