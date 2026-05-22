@@ -15,16 +15,16 @@
 	//------------------------------
 	// 데이터베이스 작업 - 수정 데이터 조회
 	//------------------------------
-	String host = "jdbc:mysql://127.0.0.1:3306/studydb";
-	String user = "kggakm";
-	String pass = "1234";
+	//String host = "jdbc:mysql://127.0.0.1:3306/studydb";
+	//String user = "kggakm";
+	//String pass = "1234";
 	
 	try {
+		// 일반 JDBC 접속 방식
 		// 1) 드라이버 로드
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		
+		//Class.forName("com.mysql.cj.jdbc.Driver");
 		// 2) 데이터베이스 접속
-		Connection conn = DriverManager.getConnection(host, user, pass);
+		//Connection conn = DriverManager.getConnection(host, user, pass);
 		
 		// 3) SQL실행 객체 생성
 		String sql = "SELECT * FROM `User1` WHERE `userid` = ?";
