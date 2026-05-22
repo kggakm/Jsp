@@ -1,3 +1,6 @@
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.Context"%>
+<%@page import="javax.naming.InitialContext"%>
 <%@page import="sub1.User1"%>
 <%@ page import="java.sql.PreparedStatement"%>
 <%@ page import="java.sql.ResultSet"%>
@@ -25,6 +28,15 @@
 		//Class.forName("com.mysql.cj.jdbc.Driver");
 		// 2) 데이터베이스 접속
 		//Connection conn = DriverManager.getConnection(host, user, pass);
+		
+		// DBCP 방식
+		// 1) JNDI 서비스 객체 생성
+		Context initCtx = new InitialContext();
+		Context ctx = (Context) initCtx.lookup("java:comp/env");
+		
+		// 2) 커넥션풀 데이터베이스 커넥션 가져오기
+		DataSource ds = (DataSource) ctx.lookup("jdbc/studydb");
+		Connection conn = ds.getConnection();
 		
 		// 3) SQL실행 객체 생성
 		String sql = "SELECT * FROM `User1` WHERE `userid` = ?";

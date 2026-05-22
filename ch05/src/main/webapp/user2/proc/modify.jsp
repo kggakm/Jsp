@@ -1,3 +1,6 @@
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.Context"%>
+<%@page import="javax.naming.InitialContext"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -10,16 +13,25 @@
 	String addr = request.getParameter("addr");
 	
 	// 데이터베이스 작업
-	String host = "jdbc:mysql://127.0.0.1:3306/studydb";
-	String user = "kggakm";
-	String pass = "1234";
+	//String host = "jdbc:mysql://127.0.0.1:3306/studydb";
+	//String user = "kggakm";
+	//String pass = "1234";
 	
 	try {
+		// 일반 JNDI 접속 방법
 		// 1) 드라이버 로드
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		
+		//Class.forName("com.mysql.cj.jdbc.Driver");
 		// 2) 데이터베이스 접속
-		Connection conn = DriverManager.getConnection(host, user, pass);
+		//Connection conn = DriverManager.getConnection(host, user, pass);
+		
+		// DBCP 방법
+		// 1) JNDI 서비스 객체 생성
+		Context initCtx = new InitialContext();
+		Context ctx = (Context) initCtx.lookup("java:comp/env");
+		
+		// 2) 커넥션풀 데이터베이스 커넥션 가져오기
+		DataSource ds = (DataSource) ctx.lookup("jdbc/studydb");
+		Connection conn = ds.getConnection();
 		
 		// 3) SQL 실행 객체 생성
 		String sql = "UPDATE `User2` SET ";
