@@ -17,17 +17,28 @@
   	<servlet-name>HelloServlet</servlet-name>
 	<servlet-class>sub1.HelloServlet</servlet-class>  
   </servlet>
-   <servlet>
-  	<servlet-name>WelcomeServlet</servlet-name>
-	<servlet-class>sub1.WelcomeServlet</servlet-class>  
-  </servlet>
+
   <!-- 서블릿 주소 맵핑 -->
   <servlet-mapping>
   	<servlet-name>HelloServlet</servlet-name>
   	<url-pattern>/hello.do</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>WelcomeServlet</servlet-name>
-  	<url-pattern>/welcome.do</url-pattern>
-  </servlet-mapping>
+  
+  <!-- 필터 등록 -->
+  <filter>
+  	<filter-name>AFilter</filter-name>
+  	<filter-class>sub2.AFilter</filter-class>
+  </filter>
+  
+  <!-- 필터 주소맵핑 -->
+  <filter-mapping>
+  	<filter-name>AFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 리스너 등록 -->
+  <listener>
+  	<listener-class>sub3.MyContextListener</listener-class>
+  </listener>
+
 </web-app>

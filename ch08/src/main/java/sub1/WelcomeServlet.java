@@ -4,15 +4,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /*
 	서블릿 등록(주소맵핑)
-	 
+	 1) xml 설정 방법
+	  web.xml > servlet 태그 설정
+	  
+	 2) 어노테이션 설정 방법
+	  - 서블릿 클래스 상단 @WebServlet("주소") 선언
 */
 
+@WebServlet("/welcome.do")
 public class WelcomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -40,6 +46,7 @@ public class WelcomeServlet extends HttpServlet {
 		writer.println("<h3>WelcomeServlet</h3>");
 		writer.println("<a href='./1_ServletTest.jsp'>메인</a>");
 		writer.println("<a href='./hello.do'>HelloServlet</a>");
+		writer.println("<a href='./greeting.do'>GreetingServlet</a>");
 		writer.println("</body>");
 		writer.println("</html>");
 		writer.close();
