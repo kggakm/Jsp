@@ -8,11 +8,7 @@
 </head>
 <body>
     <div id="wrapper">
-        <header>
-            <h3>
-                <a href="/index.html" class="title">Board Project</a>
-            </h3>
-        </header>
+        <%@ include file="./_head.jsp" %>
         <main id="user">
             <section class="login">
                 <form action="../article/list.html">                    
@@ -42,12 +38,7 @@
                 </div>
             </section>
         </main>
-        <footer>
-            <p>
-                <span class="copyright">Copyrightⓒ 김철학(개발에반하다.)</span>
-                <span class="version">v1.0.1</span>
-            </p>
-        </footer>
+        <%@ include file="./_tail.jsp" %>
     </div>    
 </body>
 </html>

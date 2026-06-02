@@ -28,6 +28,15 @@ public class LoginController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		// 전송 데이터 수신
+		String userid = req.getParameter("userid");
+		String pass = req.getParameter("pass");
+		System.out.println(userid);
+		
+		// 서비스 호출
+		service.
+		
+		
 	}
 	
 

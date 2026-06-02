@@ -11,15 +11,15 @@ public enum TermsService {
 	INSTANCE;
 	
 	// DAO 가져오기
-	private ArticleDAO dao = ArticleDAO.getInstance();
+	private TermsDAO dao = TermsDAO.getInstance();
 	
 	// DAO 호출 서비스 메서드
 	public void register(ArticleDTO dto) {
 		dao.insert(dto);
 	}
 	
-	public ArticleDTO findById(String ano) {
-		return dao.select(ano);
+	public TermsDTO findById(int no) {
+		return dao.select(no);
 	}
 	
 	public List<ArticleDTO> findAll() {
@@ -30,8 +30,8 @@ public enum TermsService {
 		dao.update(dto);
 	}
 	
-	public void remove(String ano) {
-		dao.delete(ano);
+	public void remove(int no) {
+		dao.delete(no);
 	}
 
 }

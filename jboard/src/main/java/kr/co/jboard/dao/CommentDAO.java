@@ -18,7 +18,7 @@ public class CommentDAO extends DBHelper {
 	private CommentDAO() {}
 	
 	// 기본 CRUD 메서드
-	public CommentDTO select(String userid) {
+	public CommentDTO select(String cno) {
 		
 		// 반환용 DTO
 		CommentDTO dto = null;
@@ -43,29 +43,19 @@ public class CommentDAO extends DBHelper {
 	public List<CommentDTO> selectAll() {
 		
 		// 반환용 List
-		List<UserDTO> dtoList = new 
+		List<CommentDTO> dtoList = new ArrayList<>();
 		
 		try {
 			 conn = getConnection();
 			 stmt = conn.createStatement();
 			 
-			 rs = stmt.executeQuery(SQL.SELECT_ALL_USER);
+			 rs = stmt.executeQuery(SQL.SELECT_ALL_COMMENT);
 			 
 			 while(rs.next()) {
-				UserDTO dto = new UserDTO();
-				dto.setAno(rs.getInt(1));
-				dto.setType(rs.getString(2));
-				dto.setTitle(rs.getString(3));
-				dto.setContent(rs.getString(3));
-				dto.setComment(rs.getInt(4));
-				dto.setFile(rs.getInt(5));
-				dto.setHit(rs.getInt(6));
-				dto.setWriter(rs.getString(1));
-				dto.setRegip(rs.getString(1));
-				dto.setWdate(rs.getString(1));
+				 CommentDTO dto = new CommentDTO();
+				 dtoList.add(dto);
 			 }
 			 closeAll();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -73,15 +63,11 @@ public class CommentDAO extends DBHelper {
 		return dtoList;
 	}
 	
-	public void insert(UserDTO dto) {
+	public void insert(CommentDTO dto) {
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.INSERT_USER);
-			psmt.setString(1, dto.getTitle());
-			psmt.setString(2, dto.getContent());
-			psmt.setString(3, dto.getWriter());
-			psmt.setString(4, dto.getRegip());
-			psmt.excuteUpdate();
+			psmt = conn.prepareStatement(SQL.INSERT_COMMENT);
+			psmt.executeUpdate();
 			closeAll();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -89,14 +75,11 @@ public class CommentDAO extends DBHelper {
 		
 	}
 	
-	public void update(UserDTO dto) {
+	public void update(CommentDTO dto) {
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.UPDATE_USER);
-			psmt.setString(1, dto.getTitle());
-			psmt.setString(2, dto.getContent());
-			psmt.setInt(3, dto.getAno());
-			psmt.excuteUpdate();
+			psmt = conn.prepareStatement(SQL.UPDATE_COMMENT);
+			psmt.executeUpdate();
 			closeAll();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,20 +87,14 @@ public class CommentDAO extends DBHelper {
 		
 	}
 	
-	public void delete(String ano) {
+	public void delete(String cno) {
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.DELETE_USER);
-			psmt.setString(1, ano));
-			psmt.excuteUpdate();
+			psmt = conn.prepareStatement(SQL.DELETE_COMMENT);
+			psmt.executeUpdate();
 			closeAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
-	
-	
-	
-
 }

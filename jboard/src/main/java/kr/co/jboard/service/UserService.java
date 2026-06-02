@@ -18,8 +18,12 @@ public enum UserService {
 		dao.insert(dto);
 	}
 	
-	public UserDTO findById(String ano) {
-		return dao.select(ano);
+	public UserDTO findById(String userid) {
+		return dao.select(userid);
+	}
+	
+	public UserDTO findById(String userid, String pass) {
+		return dao.select(userid, pass);
 	}
 	
 	public List<UserDTO> findAll() {
