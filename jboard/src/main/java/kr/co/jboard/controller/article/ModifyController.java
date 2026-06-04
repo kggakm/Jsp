@@ -17,18 +17,18 @@ public class ModifyController extends HttpServlet {
 	
 	// 서비스 가져오기(열거상수 객체)
 	private ArticleService service = ArticleService.INSTANCE;
-	
+		
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		
 		// View 포워드
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/article/modify.jsp");
-		dispatcher.forward(req, resp);
+		dispatcher.forward(req, resp);	
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 	}
 	
 

@@ -1,7 +1,6 @@
 package kr.co.jboard.dto;
 
 public class CommentDTO {
-	
 	// Comment 테이블 속성 확인
 	private int cno;
 	private int parent;
@@ -46,6 +45,7 @@ public class CommentDTO {
 	public void setWdate(String wdate) {
 		this.wdate = wdate;
 	}
+	
 	@Override
 	public String toString() {
 		return "CommentDTO [cno=" + cno + ", parent=" + parent + ", content=" + content + ", writer=" + writer

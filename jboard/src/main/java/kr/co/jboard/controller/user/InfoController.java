@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kr.co.jboard.service.ArticleService;
+import kr.co.jboard.service.UserService;
 
 @WebServlet("/user/info.do")
 public class InfoController extends HttpServlet {
@@ -21,14 +22,14 @@ public class InfoController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		
 		// View 포워드
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/info.jsp");
-		dispatcher.forward(req, resp);
+		dispatcher.forward(req, resp);	
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 	}
 	
 

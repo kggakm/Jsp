@@ -22,14 +22,15 @@ public class ListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		
 		// View 포워드
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/article/list.jsp");
-		dispatcher.forward(req, resp);
+		dispatcher.forward(req, resp);	
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 	}
 	
+
 }

@@ -2,36 +2,35 @@ package kr.co.jboard.service;
 
 import java.util.List;
 
-import kr.co.jboard.dao.ArticleDAO;
-import kr.co.jboard.dto.ArticleDTO;
+import kr.co.jboard.dao.FileDAO;
+import kr.co.jboard.dto.FileDTO;
 
 public enum FileService {
-	
+
 	// 열거 상수 객체(싱글톤)
 	INSTANCE;
 	
 	// DAO 가져오기
-	private ArticleDAO dao = ArticleDAO.getInstance();
+	private FileDAO dao = FileDAO.getInstance();
 	
 	// DAO 호출 서비스 메서드
-	public void register(ArticleDTO dto) {
+	public void register(FileDTO dto) {
 		dao.insert(dto);
 	}
 	
-	public ArticleDTO findById(String ano) {
+	public FileDTO findById(String ano) {
 		return dao.select(ano);
 	}
 	
-	public List<ArticleDTO> findAll() {
+	public List<FileDTO> findAll() {
 		return dao.selectAll();
 	}
 	
-	public void modify(ArticleDTO dto) {
+	public void modify(FileDTO dto) {
 		dao.update(dto);
 	}
 	
 	public void remove(String ano) {
 		dao.delete(ano);
 	}
-
 }

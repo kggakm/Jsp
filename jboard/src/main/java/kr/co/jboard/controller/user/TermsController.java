@@ -8,6 +8,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kr.co.jboard.dto.TermsDTO;
+import kr.co.jboard.service.TermsService;
 import kr.co.jboard.service.UserService;
 
 @WebServlet("/user/terms.do")
@@ -34,7 +36,6 @@ public class TermsController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 	}
 	
 

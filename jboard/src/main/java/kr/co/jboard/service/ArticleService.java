@@ -6,7 +6,7 @@ import kr.co.jboard.dao.ArticleDAO;
 import kr.co.jboard.dto.ArticleDTO;
 
 public enum ArticleService {
-	
+
 	// 열거 상수 객체(싱글톤)
 	INSTANCE;
 	
@@ -33,5 +33,4 @@ public enum ArticleService {
 	public void remove(String ano) {
 		dao.delete(ano);
 	}
-
 }

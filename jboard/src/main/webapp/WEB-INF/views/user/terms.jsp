@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,34 +11,30 @@
     	document.addEventListener('DOMContentLoaded', function(){
     		console.log('here1...');
     		
-    		// 다음버튼 클릭
+    		// 다음 버튼 클릭
     		const btnNext = document.getElementsByClassName('btnNext')[0];
     		const checks = document.querySelectorAll('input[type=checkbox]');
-			//console.log('check : ' + checks);
+    		//console.log('checks : ' + checks);
     		
     		btnNext.addEventListener('click', function(e){
-    			e.preventDefault();
-    			//console.log('check[0].checked : ' + check[0].checked)
+    			e.preventDefault();    			
+    			//console.log('checks[0].checked : ' + checks[0].checked);
     			
-    			if(!check[0].checked){
+    			if(!checks[0].checked){
     				alert('사이트 이용약관에 동의해주세요.');
     				return;
     			}
     			
-    			if(!check[1].checked){
+    			if(!checks[1].checked){
     				alert('개인정보 취급방침에 동의해주세요.');
     				return;
     			}
     			
     			// 회원가입 이동
-    			location.href = 'jboard/user/register.do';
-    		})
-    		
-    		
-    	})
-    	
-    
-    
+    			location.href = '/jboard/user/register.do';
+    			
+    		});
+    	});
     </script>
 </head>
 <body>
@@ -55,7 +51,6 @@
                         </td>
                     </tr>
                 </table>
-
                 <h2 class="tit">개인정보 취급방침</h2>
                 <table border="1">                    
                     <tr>
@@ -67,9 +62,8 @@
                 </table>
                 <div>
                     <a href="/jboard/user/login.do" class="btn btnCancel">취소</a>
-                    <a href="./register.html" class="btn btnNext">다음</a>
+                    <a href="/jboard/user/register.do" class="btn btnNext">다음</a>
                 </div>
-
             </section>
         </main>
         <%@ include file="./_tail.jsp" %>

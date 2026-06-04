@@ -81,7 +81,4 @@ public class ArticleDTO {
 				+ comment + ", file=" + file + ", hit=" + hit + ", writer=" + writer + ", regip=" + regip + ", wdate="
 				+ wdate + "]";
 	}
-	
-	
-
 }

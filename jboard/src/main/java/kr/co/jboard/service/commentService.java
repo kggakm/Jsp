@@ -2,36 +2,35 @@ package kr.co.jboard.service;
 
 import java.util.List;
 
-import kr.co.jboard.dao.ArticleDAO;
-import kr.co.jboard.dto.ArticleDTO;
+import kr.co.jboard.dao.CommentDAO;
+import kr.co.jboard.dto.CommentDTO;
 
-public enum commentService {
-	
+public enum CommentService {
+
 	// 열거 상수 객체(싱글톤)
 	INSTANCE;
 	
 	// DAO 가져오기
-	private ArticleDAO dao = ArticleDAO.getInstance();
+	private CommentDAO dao = CommentDAO.getInstance();
 	
 	// DAO 호출 서비스 메서드
-	public void register(ArticleDTO dto) {
+	public void register(CommentDTO dto) {
 		dao.insert(dto);
 	}
 	
-	public ArticleDTO findById(String ano) {
-		return dao.select(ano);
+	public CommentDTO findById(String cno) {
+		return dao.select(cno);
 	}
 	
-	public List<ArticleDTO> findAll() {
+	public List<CommentDTO> findAll() {
 		return dao.selectAll();
 	}
 	
-	public void modify(ArticleDTO dto) {
+	public void modify(CommentDTO dto) {
 		dao.update(dto);
 	}
 	
-	public void remove(String ano) {
-		dao.delete(ano);
+	public void remove(String cno) {
+		dao.delete(cno);
 	}
-
 }

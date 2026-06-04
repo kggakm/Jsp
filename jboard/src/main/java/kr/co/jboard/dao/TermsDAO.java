@@ -3,34 +3,37 @@ package kr.co.jboard.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.co.jboard.dto.CommentDTO;
+import kr.co.jboard.dto.TermsDTO;
 import kr.co.jboard.util.DBHelper;
 import kr.co.jboard.util.SQL;
 
-public class CommentDAO extends DBHelper {
+public class TermsDAO extends DBHelper {
 	
 	// 싱글톤
-	private static CommentDAO instance = new CommentDAO();
-	public static CommentDAO getInstance() {
+	private static TermsDAO instance = new TermsDAO();
+	public static TermsDAO getInstance() {
 		return instance;
 	}
-	private CommentDAO() {}
-	
+	private TermsDAO() {}
 	
 	// 기본 CRUD 메서드
-	public CommentDTO select(String cno) {
+	public TermsDTO select(int no) {
 		
 		// 반환용 DTO
-		CommentDTO dto = null;
+		TermsDTO dto = null;
 		
 		try {
 			conn = getConnection();						
-			psmt = conn.prepareStatement(SQL.SELECT_COMMENT);
+			psmt = conn.prepareStatement(SQL.SELECT_TERMS);
+			psmt.setInt(1, no);
 			
 			rs = psmt.executeQuery();
 			
 			if(rs.next()) {
-				dto = new CommentDTO();
+				dto = new TermsDTO();
+				dto.setNo(rs.getInt(1));
+				dto.setBasic(rs.getString(2));
+				dto.setPrivacy(rs.getString(3));
 			}			
 			closeAll();
 		} catch (Exception e) {
@@ -39,18 +42,18 @@ public class CommentDAO extends DBHelper {
 		return dto;
 	}
 	
-	public List<CommentDTO> selectAll() {
+	public List<TermsDTO> selectAll() {
 		
 		// 반환용 List
-		List<CommentDTO> dtoList = new ArrayList<>();
+		List<TermsDTO> dtoList = new ArrayList<>();
 		
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(SQL.SELECT_ALL_COMMENT);
+			rs = stmt.executeQuery(SQL.SELECT_ALL_TERMS);
 			
 			while(rs.next()) {
-				CommentDTO dto = new CommentDTO();
+				TermsDTO dto = new TermsDTO();
 				dtoList.add(dto);
 			}
 			closeAll();
@@ -60,10 +63,10 @@ public class CommentDAO extends DBHelper {
 		return dtoList;
 	}
 	
-	public void insert(CommentDTO dto) {
+	public void insert(TermsDTO dto) {
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.INSERT_COMMENT);
+			psmt = conn.prepareStatement(SQL.INSERT_TERMS);
 			psmt.executeUpdate();
 			closeAll();
 		}catch (Exception e) {
@@ -71,10 +74,10 @@ public class CommentDAO extends DBHelper {
 		}
 	}
 	
-	public void update(CommentDTO dto) {
+	public void update(TermsDTO dto) {
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.UPDATE_COMMENT);
+			psmt = conn.prepareStatement(SQL.UPDATE_TERMS);
 			psmt.executeUpdate();
 			closeAll();
 		}catch (Exception e) {
@@ -82,10 +85,10 @@ public class CommentDAO extends DBHelper {
 		}
 	}
 
-	public void delete(String cno) {
+	public void delete(int no) {
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.DELETE_COMMENT);
+			psmt = conn.prepareStatement(SQL.DELETE_TERMS);
 			psmt.executeUpdate();
 			closeAll();
 		}catch (Exception e) {

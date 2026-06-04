@@ -4,43 +4,53 @@ public class SQL {
 	
 	// Article
 	public static final String INSERT_ARTICLE = "INSERT INTO Article SET "
-																	+ "type='free',"
-																	+ "title=?,"
-																	+ "content=?,"
-																	+ "writer=?,"
-																	+ "regip=?,"
-																	+ "wdate=NOW()";
+															+ "type='free',"
+															+ "title=?,"
+															+ "content=?,"																			
+															+ "writer=?,"
+															+ "regip=?,"
+															+ "wdate=NOW()";
+	
 	public static final String SELECT_ARTICLE = "SELECT * FROM Article WHERE ano=?";
 	public static final String SELECT_ALL_ARTICLE = "SELECT * FROM Article";
 	public static final String UPDATE_ARTICLE = "UPDATE Article SET "
-																	+ "title=?,"
-																	+ "content=? "
-																	+ "WHERE ano=?";
+															+ "title=?,"
+															+ "content=? "															
+															+ "WHERE ano=?";
 	public static final String DELETE_ARTICLE = "DELETE FROM Article WHERE ano=?";
 	
 	// User
 	public static final String INSERT_USER = "INSERT INTO User SET "
-													+ "userid=?,"
-													+ "pass=SHA2(?, 256),"
-													+ "name=?,"
-													+ "nick=?,"
-													+ "email=?,"
-													+ "hp=?,"
-													+ "zip=?,"
-													+ "addr1=?,"
-													+ "addr2=?,"
-													+ "regip=?,"
-													+ "regDate=NOW()";
-	public static final String SELECT_USER= "";
-	public static final String SELECT_USER_WITH_PASS= "SELECT * FROM User WHERE userid=? AND pass=SHA2(?, 256)";
-	public static final String SELECT_ALL_USER= "";
+												+ "userid=?,"
+												+ "pass=SHA2(?, 256),"
+												+ "name=?,"
+												+ "nick=?,"
+												+ "email=?,"
+												+ "hp=?,"
+												+ "zip=?,"
+												+ "addr1=?,"
+												+ "addr2=?,"
+												+ "regip=?,"
+												+ "regDate=NOW()";
+	
+	public static final String SELECT_USER = "";
+	public static final String SELECT_COUNT_USER = "SELECT COUNT(*) FROM User ";
+	public static final String WHERE_USERID = "WHERE userid=?";
+	public static final String WHERE_NICK = "WHERE nick=?";
+	public static final String WHERE_EMAIL = "WHERE email=?";
+	public static final String WHERE_HP = "WHERE hp=?";
+	
+	
+	
+	public static final String SELECT_USER_WITH_PASS = "SELECT * FROM User WHERE userid=? AND pass=SHA2(?, 256)";
+	public static final String SELECT_ALL_USER = "";
 	public static final String UPDATE_USER = "";
 	public static final String DELETE_USER = "";
 	
 	// File
 	public static final String INSERT_FILE = "";
 	public static final String SELECT_FILE = "";
-	public static final String SELECT_ALL_FILE= "";
+	public static final String SELECT_ALL_FILE = "";
 	public static final String UPDATE_FILE = "";
 	public static final String DELETE_FILE = "";
 	
@@ -53,8 +63,8 @@ public class SQL {
 	
 	// Terms
 	public static final String INSERT_TERMS = "";
-	public static final String SELECT_TERMS = "";
-	public static final String SELECT_ALL_TERMS= "";
+	public static final String SELECT_TERMS = "SELECT * FROM Terms WHERE no=?";
+	public static final String SELECT_ALL_TERMS = "";
 	public static final String UPDATE_TERMS = "";
 	public static final String DELETE_TERMS = "";
 

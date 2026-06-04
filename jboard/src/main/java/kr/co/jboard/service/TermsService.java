@@ -2,11 +2,11 @@ package kr.co.jboard.service;
 
 import java.util.List;
 
-import kr.co.jboard.dao.ArticleDAO;
-import kr.co.jboard.dto.ArticleDTO;
+import kr.co.jboard.dao.TermsDAO;
+import kr.co.jboard.dto.TermsDTO;
 
 public enum TermsService {
-	
+
 	// 열거 상수 객체(싱글톤)
 	INSTANCE;
 	
@@ -14,7 +14,7 @@ public enum TermsService {
 	private TermsDAO dao = TermsDAO.getInstance();
 	
 	// DAO 호출 서비스 메서드
-	public void register(ArticleDTO dto) {
+	public void register(TermsDTO dto) {
 		dao.insert(dto);
 	}
 	
@@ -22,16 +22,15 @@ public enum TermsService {
 		return dao.select(no);
 	}
 	
-	public List<ArticleDTO> findAll() {
+	public List<TermsDTO> findAll() {
 		return dao.selectAll();
 	}
 	
-	public void modify(ArticleDTO dto) {
+	public void modify(TermsDTO dto) {
 		dao.update(dto);
 	}
 	
 	public void remove(int no) {
 		dao.delete(no);
 	}
-
 }

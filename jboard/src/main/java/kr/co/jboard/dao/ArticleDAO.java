@@ -14,8 +14,8 @@ public class ArticleDAO extends DBHelper {
 	public static ArticleDAO getInstance() {
 		return instance;
 	}
-	
 	private ArticleDAO() {}
+	
 	
 	// 기본 CRUD 메서드
 	public ArticleDTO select(String ano) {
@@ -24,7 +24,7 @@ public class ArticleDAO extends DBHelper {
 		ArticleDTO dto = null;
 		
 		try {
-			conn = getConnection();
+			conn = getConnection();						
 			psmt = conn.prepareStatement(SQL.SELECT_ARTICLE);
 			psmt.setString(1, ano);
 			
@@ -58,12 +58,11 @@ public class ArticleDAO extends DBHelper {
 		List<ArticleDTO> dtoList = new ArrayList<>();
 		
 		try {
-			 conn = getConnection();
-			 stmt = conn.createStatement();
-			 
-			 rs = stmt.executeQuery(SQL.SELECT_ALL_ARTICLE);
-			 
-			 while(rs.next()) {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(SQL.SELECT_ALL_ARTICLE);
+			
+			while(rs.next()) {
 				ArticleDTO dto = new ArticleDTO();
 				dto.setAno(rs.getInt(1));
 				dto.setType(rs.getString(2));
@@ -76,13 +75,11 @@ public class ArticleDAO extends DBHelper {
 				dto.setRegip(rs.getString(9));
 				dto.setWdate(rs.getString(10));
 				dtoList.add(dto);
-			 }
-			 closeAll();
-			
-		} catch (Exception e) {
+			}
+			closeAll();
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return dtoList;
 	}
 	
@@ -96,10 +93,9 @@ public class ArticleDAO extends DBHelper {
 			psmt.setString(4, dto.getRegip());
 			psmt.executeUpdate();
 			closeAll();
-		} catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void update(ArticleDTO dto) {
@@ -111,12 +107,11 @@ public class ArticleDAO extends DBHelper {
 			psmt.setInt(3, dto.getAno());
 			psmt.executeUpdate();
 			closeAll();
-		} catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
-	
+
 	public void delete(String ano) {
 		try {
 			conn = getConnection();
@@ -124,7 +119,7 @@ public class ArticleDAO extends DBHelper {
 			psmt.setString(1, ano);
 			psmt.executeUpdate();
 			closeAll();
-		} catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
