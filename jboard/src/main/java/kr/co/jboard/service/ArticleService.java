@@ -22,8 +22,8 @@ public enum ArticleService {
 		return dao.select(ano);
 	}
 	
-	public List<ArticleDTO> findAll() {
-		return dao.selectAll();
+	public List<ArticleDTO> findAll(int start) {
+		return dao.selectAll(start);
 	}
 	
 	public void modify(ArticleDTO dto) {
