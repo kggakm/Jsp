@@ -239,6 +239,18 @@ public class ArticleDAO extends DBHelper {
 		return ano;
 	}
 	
+	public void updateHit(String ano) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_ARTICLE_HIT);
+			psmt.setString(1, ano);
+			psmt.executeUpdate();
+			closeAll();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void update(ArticleDTO dto) {
 		try {
 			conn = getConnection();

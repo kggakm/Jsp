@@ -81,6 +81,10 @@ public enum ArticleService {
 		dao.update(dto);
 	}
 	
+	public void plusHit(String ano) {
+		dao.updateHit(ano);
+	}
+	
 	public void remove(String ano) {
 		dao.delete(ano);
 	}

@@ -44,6 +44,11 @@ public class SQL {
 															+ "title=?,"
 															+ "content=? "															
 															+ "WHERE ano=?";
+	
+	public static final String UPDATE_ARTICLE_HIT = "UPDATE Article SET "
+															+ "hit=hit+1 "
+															+ "WHERE ano=?";
+	
 	public static final String DELETE_ARTICLE = "DELETE FROM Article WHERE ano=?";
 	
 	// User
