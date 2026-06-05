@@ -48,11 +48,15 @@
                 </table>
 
                 <div class="page">
-                    <a href="#" class="prev">이전</a>
-                    <c:forEach var="i" begin="1" end="${lastPageNum}">
+                	<c:if test="${pageGroupDTO.start > 1}">
+                    	<a href="/jboard/article/list.do?page=${pageGroupDTO.start - 1}" class="prev">이전</a>
+                    </c:if>
+                    <c:forEach var="i" begin="${pageGroupDTO.start}" end="${pageGroupDTO.end}">
                     	<a href="/jboard/article/list.do?page=${i}" class="num ${currentPage == i ? 'current' : ''}">${i}</a>
 					</c:forEach>
-                    <a href="#" class="next">다음</a>
+					<c:if test="${pageGroupDTO.end < lastPageNum }">
+                    	<a href="/jboard/article/list.do?page=${pageGroupDTO.end + 1}" class="next">다음</a>
+                    </c:if>
                 </div>
 
                 <a href="/jboard/article/write.do" class="btn btnWrite">글쓰기</a>

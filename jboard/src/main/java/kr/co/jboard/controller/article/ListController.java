@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kr.co.jboard.dto.ArticleDTO;
+import kr.co.jboard.dto.PageGroupDTO;
 import kr.co.jboard.service.ArticleService;
 
 @WebServlet("/article/list.do")
@@ -37,6 +38,9 @@ public class ListController extends HttpServlet {
 		// 마지막 페이지 번호 구하기
 		int lastPageNum = service.getLastPageNum(total);
 		
+		// 현재 페이지 그룹 구하기
+		PageGroupDTO pageGroupDTO = service.getCurrentPageGroup(currentPage, lastPageNum);
+		
 		// Limit 용 start 계산
 		int start = service.getStart(currentPage);
 		
@@ -47,6 +51,7 @@ public class ListController extends HttpServlet {
 		req.setAttribute("dtoList", dtoList);
 		req.setAttribute("lastPageNum", lastPageNum);
 		req.setAttribute("currentPage", currentPage);
+		req.setAttribute("pageGroupDTO", pageGroupDTO);
 		
 		
 		// View 포워드
