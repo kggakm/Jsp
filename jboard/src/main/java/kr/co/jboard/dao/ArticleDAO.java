@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.jboard.dto.ArticleDTO;
+import kr.co.jboard.dto.FileDTO;
 import kr.co.jboard.util.DBHelper;
 import kr.co.jboard.util.SQL;
 
@@ -77,6 +78,7 @@ public class ArticleDAO extends DBHelper {
 		
 		// 반환용 DTO
 		ArticleDTO dto = null;
+		List<FileDTO> fileList = new ArrayList<>();
 		
 		try {
 			conn = getConnection();						
@@ -85,20 +87,31 @@ public class ArticleDAO extends DBHelper {
 			
 			rs = psmt.executeQuery();
 			
-			if(rs.next()) {
-				dto = new ArticleDTO();
-				dto.setAno(rs.getInt(1));
-				dto.setType(rs.getString(2));
-				dto.setTitle(rs.getString(3));
-				dto.setContent(rs.getString(4));
-				dto.setComment(rs.getInt(5));
-				dto.setFile(rs.getInt(6));
-				dto.setHit(rs.getInt(7));
-				dto.setWriter(rs.getString(8));
-				dto.setRegip(rs.getString(9));
-				dto.setWdate(rs.getString(10));
+			while(rs.next()) {
+				if(dto == null) {
+					dto = new ArticleDTO();
+					dto.setAno(rs.getInt(1));
+					dto.setType(rs.getString(2));
+					dto.setTitle(rs.getString(3));
+					dto.setContent(rs.getString(4));
+					dto.setComment(rs.getInt(5));
+					dto.setFile(rs.getInt(6));
+					dto.setHit(rs.getInt(7));
+					dto.setWriter(rs.getString(8));
+					dto.setRegip(rs.getString(9));
+					dto.setWdate(rs.getString(10));
+					dto.setNick(rs.getString(11));
+				}
+				FileDTO fileDTO = new FileDTO();
+				fileDTO.setFno(rs.getInt(12));
+				fileDTO.setAno(rs.getInt(13));
+				fileDTO.setOfname(rs.getString(14));
+				fileDTO.setSfname(rs.getString(15));
+				fileDTO.setDownload(rs.getInt(16));
+				fileDTO.setRdate(rs.getString(17));
+				fileList.add(fileDTO);
 			}
-			
+			dto.setFileList(fileList);
 			closeAll();
 			
 		} catch (Exception e) {

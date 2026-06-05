@@ -39,7 +39,7 @@
                     <c:forEach var="dto" items="${dtoList}"> <!-- 'requestScope.dtoList'에서 requestScope 생략 가능 -->                    
 	                    <tr>
 	                        <td>${pageStart}</td>
-	                        <td><a href="#">${dto.title}[${dto.comment}]</a></td>
+	                        <td><a href="/jboard/article/view.do?page=${currentPage}&ano=${dto.ano}">${dto.title}[${dto.comment}]</a></td>
 	                        <td>${dto.nick}</td>
 	                        <td>${dto.wdate}</td><!--  dto.getWdate() 호출 -->
 	                        <td>${dto.hit}</td>

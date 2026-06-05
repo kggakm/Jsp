@@ -12,7 +12,15 @@ public class SQL {
 															+ "regip=?,"
 															+ "wdate=NOW()";
 	
-	public static final String SELECT_ARTICLE = "SELECT * FROM Article WHERE ano=?";
+	public static final String SELECT_ARTICLE = "SELECT "
+												+ "a.*, "
+												+ "u.nick, "
+												+ "f.* "
+												+ "FROM Article AS a "
+												+ "LEFT JOIN File AS f ON a.ano = f.ano "
+												+ "JOIN User AS u ON a.writer = u.userid "
+												+ "WHERE a.ano=?";
+	
 	public static final String SELECT_MAX_ANO = "SELECT MAX(ano) FROM Article";
 	public static final String SELECT_COUNT_ARTICLE = "SELECT COUNT(*) FROM article";
 	public static final String SELECT_ALL_ARTICLE = "SELECT a.*, u.nick FROM Article AS a "

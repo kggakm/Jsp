@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kr.co.jboard.dto.ArticleDTO;
 import kr.co.jboard.service.ArticleService;
 
 @WebServlet("/article/view.do")
@@ -20,6 +21,15 @@ public class ViewController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String page = req.getParameter("page");
+		String ano = req.getParameter("ano");
+		
+		ArticleDTO articleDTO = service.findById(ano);
+		
+		// View 공유 참조
+		req.setAttribute("page", page);
+		req.setAttribute("articleDTO", articleDTO);
 		
 		
 		// View 포워드

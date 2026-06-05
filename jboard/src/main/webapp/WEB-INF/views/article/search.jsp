@@ -14,6 +14,7 @@
             <section class="list">
                 <nav>
                     <h1>
+                    	<a href="/jboard/article/list.do">[전체 글목록]</a>
                         검색 건수 글목록
                         <span>${total}건</span>
                     </h1>
