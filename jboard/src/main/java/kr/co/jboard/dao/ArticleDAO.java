@@ -83,19 +83,34 @@ public class ArticleDAO extends DBHelper {
 		return dtoList;
 	}
 	
-	public void insert(ArticleDTO dto) {
+	public int insert(ArticleDTO dto) {
+		
+		// 반환용 글번호
+		int ano = 0;
+		
 		try {
 			conn = getConnection();
+			conn.setAutoCommit(false);
 			psmt = conn.prepareStatement(SQL.INSERT_ARTICLE);
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
 			psmt.setString(3, dto.getWriter());
 			psmt.setString(4, dto.getRegip());
 			psmt.executeUpdate();
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(SQL.SELECT_MAX_ANO);
+			
+			if(rs.next()) {
+				ano = rs.getInt(1);
+			}
+			conn.commit();
 			closeAll();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return ano;
 	}
 	
 	public void update(ArticleDTO dto) {

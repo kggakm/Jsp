@@ -12,6 +12,7 @@ public class SQL {
 															+ "wdate=NOW()";
 	
 	public static final String SELECT_ARTICLE = "SELECT * FROM Article WHERE ano=?";
+	public static final String SELECT_MAX_ANO = "SELECT MAX(ano) FROM Article";
 	public static final String SELECT_ALL_ARTICLE = "SELECT * FROM Article";
 	public static final String UPDATE_ARTICLE = "UPDATE Article SET "
 															+ "title=?,"
@@ -48,7 +49,11 @@ public class SQL {
 	public static final String DELETE_USER = "";
 	
 	// File
-	public static final String INSERT_FILE = "";
+	public static final String INSERT_FILE = "INSERT INTO File SET "
+												+ "ano=?,"
+												+ "ofname=?,"
+												+ "sfname=?,"
+												+ "rdate=NOW()";
 	public static final String SELECT_FILE = "";
 	public static final String SELECT_ALL_FILE = "";
 	public static final String UPDATE_FILE = "";
