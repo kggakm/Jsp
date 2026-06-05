@@ -40,6 +40,39 @@ public class ArticleDAO extends DBHelper {
 		return total;
 	}
 	
+	public int selectCountSearch(ArticleDTO articleDTO) {
+		
+		int total = 0;
+		
+		// 동적쿼리
+		StringBuilder sql = new StringBuilder(SQL.SELECT_COUNT_ARTICLE_JOIN);
+		
+		if(articleDTO.getSearchType().equals("title")) {
+			sql.append(SQL.WHERE_TITLE_KEYWORD);
+		} else if(articleDTO.getSearchType().equals("content")) {
+			sql.append(SQL.WHERE_CONTENT_KEYWORD);
+		} else if(articleDTO.getSearchType().equals("writer")) {
+			sql.append(SQL.WHERE_NICK_KEYWORD);
+		}
+		
+		try {
+			conn = getConnection();	
+			psmt = conn.prepareStatement(sql.toString());
+			psmt.setString(1, "%" + articleDTO.getKeyword() + "%");
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			
+			closeAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return total;
+	}
+	
 	public ArticleDTO select(String ano) {
 		
 		// 반환용 DTO
@@ -83,6 +116,55 @@ public class ArticleDAO extends DBHelper {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.SELECT_ALL_ARTICLE);
 			psmt.setInt(1, start);	// 0: 1페이지, 10: 2페이지, 20: 3페이지...
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ArticleDTO dto = new ArticleDTO();
+				dto.setAno(rs.getInt(1));
+				dto.setType(rs.getString(2));
+				dto.setTitle(rs.getString(3));
+				dto.setContent(rs.getString(4));
+				dto.setComment(rs.getInt(5));
+				dto.setFile(rs.getInt(6));
+				dto.setHit(rs.getInt(7));
+				dto.setWriter(rs.getString(8));
+				dto.setRegip(rs.getString(9));
+				dto.setWdate(rs.getString(10));
+				dto.setNick(rs.getString(11)); // nick
+				dtoList.add(dto);
+			}
+			closeAll();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dtoList;
+	}
+	
+	public List<ArticleDTO> selectAllSearch(ArticleDTO articleDTO, int start) {
+		
+		// 반환용 List
+		List<ArticleDTO> dtoList = new ArrayList<>();
+		
+		// 동적 쿼리 생성
+		StringBuilder sql = new StringBuilder(SQL.SELECT_ALL_ARTICLE_JOIN);
+		
+		if(articleDTO.getSearchType().equals("title")) {
+			sql.append(SQL.WHERE_TITLE_KEYWORD);
+			sql.append(SQL.ORDER_LIMIT);
+		} else if(articleDTO.getSearchType().equals("content")) {
+			sql.append(SQL.WHERE_CONTENT_KEYWORD);
+			sql.append(SQL.ORDER_LIMIT);
+		} else if(articleDTO.getSearchType().equals("writer")) {
+			sql.append(SQL.WHERE_NICK_KEYWORD);
+			sql.append(SQL.ORDER_LIMIT);
+		}
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(sql.toString());
+			psmt.setString(1, "%"+articleDTO.getKeyword()+"%");
+			psmt.setInt(2, start);	// 0: 1페이지, 10: 2페이지, 20: 3페이지...
 			
 			rs = psmt.executeQuery();
 			

@@ -17,6 +17,23 @@ public class ArticleDTO {
 	// 추가 필드
 	private String nick;
 	
+	// 검색용 추가필드
+	private String searchType;
+	private String keyword;
+	
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	
 	public String getNick() {
 		return nick;
 	}

@@ -56,6 +56,10 @@ public enum ArticleService {
 		return dao.selectCount();
 	}
 	
+	public int getCountSearch(ArticleDTO articleDTO) {
+		return dao.selectCountSearch(articleDTO);
+	}
+	
 	public int register(ArticleDTO dto) {
 		return dao.insert(dto);
 	}
@@ -63,6 +67,11 @@ public enum ArticleService {
 	public ArticleDTO findById(String ano) {
 		return dao.select(ano);
 	}
+	
+	public List<ArticleDTO> findAllSearch(ArticleDTO articleDTO, int start) {
+		return dao.selectAllSearch(articleDTO, start);
+	}
+	
 	
 	public List<ArticleDTO> findAll(int start) {
 		return dao.selectAll(start);

@@ -20,6 +20,18 @@ public class SQL {
 													+ "ON a.writer = u.userid "
 													+ "ORDER BY ano DESC "
 													+ "LIMIT ?, 10";
+	
+	public static final String SELECT_COUNT_ARTICLE_JOIN= "SELECT COUNT(*) FROM Article AS a "
+															+ "JOIN User AS u ON a.writer = u.userid ";
+	
+	public static final String SELECT_ALL_ARTICLE_JOIN = "SELECT a.*, u.nick FROM Article AS a "
+															+ "JOIN User AS u ON a.writer = u.userid ";
+
+	public static final String WHERE_TITLE_KEYWORD = "WHERE title LIKE ? ";
+	public static final String WHERE_CONTENT_KEYWORD = "WHERE content LIKE ? ";
+	public static final String WHERE_NICK_KEYWORD = "WHERE nick LIKE ? ";
+	public static final String ORDER_LIMIT= "ORDER BY ano DESC LIMIT ?, 10";
+	
 	public static final String UPDATE_ARTICLE = "UPDATE Article SET "
 															+ "title=?,"
 															+ "content=? "															
