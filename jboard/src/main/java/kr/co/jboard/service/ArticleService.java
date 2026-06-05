@@ -31,6 +31,12 @@ public enum ArticleService {
 	public int getStart(int currentPage) {
 		return (currentPage - 1) * 10;
 	}
+	
+	public int getCurrentStartNum(int total, int currentPage) {
+		int start = (currentPage - 1) * 10;
+		return total - start;
+	}
+	
 	public PageGroupDTO getCurrentPageGroup(int currentPage, int lastPageNum) {
 		
 		int currentPageGroup = (int) Math.ceil(currentPage / 10.0);

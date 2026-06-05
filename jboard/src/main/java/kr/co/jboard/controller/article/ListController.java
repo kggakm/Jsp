@@ -41,6 +41,9 @@ public class ListController extends HttpServlet {
 		// 현재 페이지 그룹 구하기
 		PageGroupDTO pageGroupDTO = service.getCurrentPageGroup(currentPage, lastPageNum);
 		
+		// 현재 페이지 시작번호 구하기
+		int pageStart = service.getCurrentStartNum(total, currentPage);
+		
 		// Limit 용 start 계산
 		int start = service.getStart(currentPage);
 		
@@ -49,8 +52,10 @@ public class ListController extends HttpServlet {
 		
 		// View 참조
 		req.setAttribute("dtoList", dtoList);
+		req.setAttribute("total", total);
 		req.setAttribute("lastPageNum", lastPageNum);
 		req.setAttribute("currentPage", currentPage);
+		req.setAttribute("pageStart", pageStart);
 		req.setAttribute("pageGroupDTO", pageGroupDTO);
 		
 		

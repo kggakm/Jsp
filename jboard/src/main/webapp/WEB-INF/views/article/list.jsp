@@ -15,7 +15,7 @@
                 <nav>
                     <h1>
                         전체 글목록
-                        <span>1012건</span>
+                        <span>${total}건</span>
                     </h1>
                     <form action="./searchList.html">
                         <select name="searchType">
@@ -38,12 +38,13 @@
                     </tr>
                     <c:forEach var="dto" items="${dtoList}"> <!-- 'requestScope.dtoList'에서 requestScope 생략 가능 -->                    
 	                    <tr>
-	                        <td>${dto.ano}</td>
+	                        <td>${pageStart}</td>
 	                        <td><a href="#">${dto.title}[${dto.comment}]</a></td>
 	                        <td>${dto.nick}</td>
 	                        <td>${dto.wdate}</td><!--  dto.getWdate() 호출 -->
 	                        <td>${dto.hit}</td>
 	                    </tr>
+	                    <c:set var="pageStart" value="${pageStart-1}"/>
                     </c:forEach>
                 </table>
 
