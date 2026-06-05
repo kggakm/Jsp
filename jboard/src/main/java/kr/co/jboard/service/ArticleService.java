@@ -13,7 +13,30 @@ public enum ArticleService {
 	// DAO 가져오기
 	private ArticleDAO dao = ArticleDAO.getInstance();
 	
+	// 페이지 계산 서비스 메서드
+	public int getCurrentPage(String page) {
+		int currentPage = 1;
+		
+		if(page != null) {
+			currentPage = Integer.parseInt(page);
+		}
+		
+		return currentPage;
+	}
+	public int getLastPageNum(int total) {
+		int lastPageNum = (int) Math.ceil(total / 10.0);
+		return lastPageNum;
+	}
+	public int getStart(int currentPage) {
+		return (currentPage - 1) * 10;
+	}
+	public void getCurrentPageGroup() {}
+	
 	// DAO 호출 서비스 메서드
+	public int getCount() {
+		return dao.selectCount();
+	}
+	
 	public int register(ArticleDTO dto) {
 		return dao.insert(dto);
 	}

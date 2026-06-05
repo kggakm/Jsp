@@ -19,6 +19,27 @@ public class ArticleDAO extends DBHelper {
 	
 	
 	// 기본 CRUD 메서드
+	public int selectCount() {
+		
+		int total = 0;
+		
+		try {
+			conn = getConnection();	
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(SQL.SELECT_COUNT_ARTICLE);
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			
+			closeAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return total;
+	}
+	
 	public ArticleDTO select(String ano) {
 		
 		// 반환용 DTO

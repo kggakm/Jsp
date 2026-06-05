@@ -49,9 +49,9 @@
 
                 <div class="page">
                     <a href="#" class="prev">이전</a>
-                    <a href="#" class="num current">1</a>
-                    <a href="#" class="num">2</a>
-                    <a href="#" class="num">3</a>
+                    <c:forEach var="i" begin="1" end="${lastPageNum}">
+                    	<a href="/jboard/article/list.do?page=${i}" class="num ${currentPage == i ? 'current' : ''}">${i}</a>
+					</c:forEach>
                     <a href="#" class="next">다음</a>
                 </div>
 
