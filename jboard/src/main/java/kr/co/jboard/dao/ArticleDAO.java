@@ -1,5 +1,6 @@
 package kr.co.jboard.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,8 +95,9 @@ public class ArticleDAO extends DBHelper {
 			psmt = conn.prepareStatement(SQL.INSERT_ARTICLE);
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
-			psmt.setString(3, dto.getWriter());
-			psmt.setString(4, dto.getRegip());
+			psmt.setInt(3, dto.getFile());
+			psmt.setString(4, dto.getWriter());
+			psmt.setString(5, dto.getRegip());
 			psmt.executeUpdate();
 			
 			stmt = conn.createStatement();
@@ -108,6 +110,11 @@ public class ArticleDAO extends DBHelper {
 			closeAll();
 		}catch (Exception e) {
 			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 		
 		return ano;

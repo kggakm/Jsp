@@ -6,7 +6,8 @@ public class SQL {
 	public static final String INSERT_ARTICLE = "INSERT INTO Article SET "
 															+ "type='free',"
 															+ "title=?,"
-															+ "content=?,"																			
+															+ "content=?,"
+															+ "file=?,"																			
 															+ "writer=?,"
 															+ "regip=?,"
 															+ "wdate=NOW()";

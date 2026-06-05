@@ -41,15 +41,16 @@ public class WriteController extends HttpServlet {
 		String writer = req.getParameter("writer");
 		String regip = req.getRemoteAddr();
 		
+		// 파일 업로드 처리
+		List<FileDTO> fileList = fileService.upload(req);
+		
 		// DTO 생성
 		ArticleDTO dto = new ArticleDTO();
 		dto.setTitle(title);
 		dto.setContent(content);
 		dto.setWriter(writer);
+		dto.setFile(fileList.size());	// 첨부파일 갯수
 		dto.setRegip(regip);
-		
-		// 파일 업로드 처리
-		List<FileDTO> fileList = fileService.upload(req);
 		
 		// 등록 서비스 요청
 		int ano = articleService.register(dto);
