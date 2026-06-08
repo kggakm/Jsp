@@ -91,9 +91,14 @@ public class SQL {
 	public static final String DELETE_FILE = "";
 	
 	// Comment
-	public static final String INSERT_COMMENT = "";
+	public static final String INSERT_COMMENT = "INSERT INTO Comment SET "
+												+ "parent=?,"
+												+ "content=?,"
+												+ "writer=?,"
+												+ "regip=?,"
+												+ "wdate=NOW()";
 	public static final String SELECT_COMMENT = "";
-	public static final String SELECT_ALL_COMMENT = "";
+	public static final String SELECT_ALL_COMMENT = "SELECT * FROM Comment WHERE parent=";
 	public static final String UPDATE_COMMENT = "";
 	public static final String DELETE_COMMENT = "";
 	

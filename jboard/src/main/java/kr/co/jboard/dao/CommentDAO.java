@@ -39,7 +39,7 @@ public class CommentDAO extends DBHelper {
 		return dto;
 	}
 	
-	public List<CommentDTO> selectAll() {
+	public List<CommentDTO> selectAll(String parent) {
 		
 		// 반환용 List
 		List<CommentDTO> dtoList = new ArrayList<>();
@@ -47,7 +47,7 @@ public class CommentDAO extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(SQL.SELECT_ALL_COMMENT);
+			rs = stmt.executeQuery(SQL.SELECT_ALL_COMMENT + parent);
 			
 			while(rs.next()) {
 				CommentDTO dto = new CommentDTO();
@@ -64,6 +64,10 @@ public class CommentDAO extends DBHelper {
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.INSERT_COMMENT);
+			psmt.setInt(1, dto.getParent());
+			psmt.setString(2, dto.getContent());
+			psmt.setString(3, dto.getWriter());
+			psmt.setString(4, dto.getRegip());
 			psmt.executeUpdate();
 			closeAll();
 		}catch (Exception e) {
