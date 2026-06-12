@@ -98,7 +98,7 @@ public class SQL {
 												+ "regip=?,"
 												+ "wdate=NOW()";
 	public static final String SELECT_COMMENT = "";
-	public static final String SELECT_ALL_COMMENT = "SELECT * FROM Comment WHERE parent=";
+	public static final String SELECT_ALL_COMMENT = "SELECT * FROM Comment WHERE parent=?";
 	public static final String UPDATE_COMMENT = "";
 	public static final String DELETE_COMMENT = "";
 	

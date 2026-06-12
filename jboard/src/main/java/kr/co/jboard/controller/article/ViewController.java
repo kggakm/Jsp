@@ -37,7 +37,7 @@ public class ViewController extends HttpServlet {
 		ArticleDTO articleDTO = service.findById(ano);
 		
 		// 댓글 가져오기
-		List<CommentDTO> commentList = commentService.findAll();
+		List<CommentDTO> commentList = commentService.findAll(ano);
 		
 		// View 공유 참조
 		req.setAttribute("page", page);

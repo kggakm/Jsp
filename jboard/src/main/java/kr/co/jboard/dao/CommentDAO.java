@@ -46,11 +46,19 @@ public class CommentDAO extends DBHelper {
 		
 		try {
 			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(SQL.SELECT_ALL_COMMENT + parent);
+			psmt = conn.prepareStatement(SQL.SELECT_ALL_COMMENT);
+			psmt.setString(1, parent);
+			
+			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
 				CommentDTO dto = new CommentDTO();
+				dto.setCno(rs.getInt(1));
+				dto.setParent(rs.getInt(2));
+				dto.setContent(rs.getString(3));
+				dto.setWriter(rs.getString(4));
+				dto.setRegip(rs.getString(5));
+				dto.setWdate(rs.getString(6));
 				dtoList.add(dto);
 			}
 			closeAll();
